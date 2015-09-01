@@ -1,0 +1,3 @@
+错误总结：
+java.net.ConnectException: localhost/127.0.0.1:8080 - Connection refused
+IP地址要写外网或局域网地址。localhost是模拟器的本地地址。
