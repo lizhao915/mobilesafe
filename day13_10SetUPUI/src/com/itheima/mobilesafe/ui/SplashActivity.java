@@ -48,7 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * ´óĞ´±äĞ¡Ğ´£ºctrl+shift+x Ğ¡Ğ´±ä´óĞ´:ctrl+shift+y Õâ¸öÀàµÄ×÷ÓÃ£º ¸ù¾İ²»ÓÃµÄ×´Ì¬ÂëÀ´´¦Àí¡£
+ * å¤§å†™å˜å°å†™ï¼šctrl+shift+x å°å†™å˜å¤§å†™:ctrl+shift+y è¿™ä¸ªç±»çš„ä½œç”¨ï¼š æ ¹æ®ä¸ç”¨çš„çŠ¶æ€ç æ¥å¤„ç†ã€‚
  * 
  * 
  */
@@ -67,7 +67,7 @@ public class SplashActivity extends Activity {
 
 			switch (msg.what) {
 			case EXCEPTION:
-				Toast.makeText(SplashActivity.this, "·¢ÉúÒì³£", 0);
+				Toast.makeText(SplashActivity.this, "å‘ç”Ÿå¼‚å¸¸", 0);
 				break;
 
 			case SHOW_UPDATEDIALGO:
@@ -77,9 +77,9 @@ public class SplashActivity extends Activity {
 				AlertDialog.Builder builder = new Builder(SplashActivity.this);
 				// builder.setCancelable(false);
 
-				builder.setTitle("¸üĞÂÌáÊ¾");
+				builder.setTitle("æ›´æ–°æç¤º");
 				builder.setMessage(mb.description);
-				// µ±ÓÃ»§°´·µ»Ø¼ü£¬Ö±½Ó½øÈ¥Ö÷½çÃæ
+				// å½“ç”¨æˆ·æŒ‰è¿”å›é”®ï¼Œç›´æ¥è¿›å»ä¸»ç•Œé¢
 				builder.setOnCancelListener(new OnCancelListener() {
 
 					public void onCancel(DialogInterface dialog) {
@@ -88,18 +88,18 @@ public class SplashActivity extends Activity {
 					}
 				});
 
-				builder.setPositiveButton("Á¢¿Ì¸üĞÂ", new OnClickListener() {
+				builder.setPositiveButton("ç«‹åˆ»æ›´æ–°", new OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 
-						// ´Ó·şÎñÏÂÔØ×îĞÂÓ¦ÓÃµ½SD¿¨
+						// ä»æœåŠ¡ä¸‹è½½æœ€æ–°åº”ç”¨åˆ°SDå¡
 						String url = "http://192.168.1.107:8080/li.apk";
 
 						DownloadUtils.download(url);
 						String progress = DownloadUtils.progress;
 						tv_progress.setText(progress);
 						System.out.println(tv_progress);
-						// ´ò¿ª°²×°Ó¦ÓÃ
+						// æ‰“å¼€å®‰è£…åº”ç”¨
 						Intent intent = new Intent();
 						intent.setAction("android.intent.action.VIEW");
 						intent.addCategory("android.intent.category.DEFAULT");
@@ -111,7 +111,7 @@ public class SplashActivity extends Activity {
 					}
 				});
 
-				builder.setNegativeButton("ÏÂ´ÎÔÙËµ", new OnClickListener() {
+				builder.setNegativeButton("ä¸‹æ¬¡å†è¯´", new OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
@@ -146,32 +146,32 @@ public class SplashActivity extends Activity {
 
 		Intent intent = new Intent(SplashActivity.this, MainActivity.class);
 		startActivity(intent);
-		finish();// Ïú»Ùµ±Ç°Activity
+		finish();// é”€æ¯å½“å‰Activity
 	}
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
 
-		// »¶Ó­½çÃæÓÉÍ¸Ã÷¶È0µ½Í¸Ã÷¶È1
+		// æ¬¢è¿ç•Œé¢ç”±é€æ˜åº¦0åˆ°é€æ˜åº¦1
 		AlphaAnimation alph = new AlphaAnimation(0.0f, 1.0f);
 		alph.setDuration(5000);
 		findViewById(R.id.rl).startAnimation(alph);
 
 		tv_progress = (TextView) findViewById(R.id.tv_progress);
 		tv_versionName = (TextView) findViewById(R.id.tv_versionName);
-		// »ñÈ¡±¾µØÓ¦ÓÃ°æ±¾Ãû³Æ
+		// è·å–æœ¬åœ°åº”ç”¨ç‰ˆæœ¬åç§°
 		Map map = MobileService.getCurrentVision(SplashActivity.this);
 		String versionName = (String) map.get("versionName");
-		// ÏÔÊ¾µ½½çÃæÉÏ
+		// æ˜¾ç¤ºåˆ°ç•Œé¢ä¸Š
 		tv_versionName.setText(versionName);
-		// ´¦Àí¸üĞÂÈí¼şµÄÂß¼­
+		// å¤„ç†æ›´æ–°è½¯ä»¶çš„é€»è¾‘
 		MobileService.getServiceInfo(SplashActivity.this, handler);
 
 	}
 
 	/**
-	 * ÔÚ»¶Ó­½çÃæÊ±£¬µ±ÓÃ»§°´·µ»Ø¼üÎŞĞ§
+	 * åœ¨æ¬¢è¿ç•Œé¢æ—¶ï¼Œå½“ç”¨æˆ·æŒ‰è¿”å›é”®æ— æ•ˆ.
 	 */
 	public void onBackPressed() {
 
